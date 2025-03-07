@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Heart, Clock } from 'lucide-react';
+import { Heart, Clock, ImageIcon } from 'lucide-react';
 import { Recipe } from '@/lib/mockData';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLocation } from 'wouter';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -14,6 +15,7 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
   const [liked, setLiked] = useState<boolean>(false);
   const [likesCount, setLikesCount] = useState<number>(recipe.likes);
   const [, setLocation] = useLocation();
+  const [imageLoaded, setImageLoaded] = useState<boolean>(false);
 
   const handleLike = (event: React.MouseEvent) => {
     // Stop event propagation to prevent navigating to the recipe detail
@@ -42,14 +44,26 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
 
   return (
     <Card 
-      className="overflow-hidden h-full flex flex-col cursor-pointer transition-transform hover:scale-[1.02] bg-[#f5f0e1]"
+      className="overflow-hidden h-full flex flex-col cursor-pointer transition-all duration-300 hover:scale-[1.02] bg-gradient-to-br from-[#f8f4e8] to-[#e6d7b8]"
       onClick={handleCardClick}
     >
       <div className="relative aspect-square overflow-hidden">
+        {!imageLoaded && (
+          <div className="absolute inset-0 flex items-center justify-center bg-[hsl(var(--wheat-soft))] h-full w-full">
+            <Skeleton className="absolute inset-0 w-full h-full bg-[hsl(var(--wheat-mild))]" />
+            <div className="relative z-10 flex flex-col items-center justify-center gap-2">
+              <ImageIcon className="h-10 w-10 text-[hsl(var(--wheat-text-light))] animate-pulse" />
+              <div className="h-2 w-24 bg-[hsl(var(--wheat-medium))] rounded-full animate-pulse" />
+              <div className="h-2 w-16 bg-[hsl(var(--wheat-medium))] rounded-full animate-pulse" />
+            </div>
+          </div>
+        )}
         <img 
           src={recipe.imageUrl} 
           alt={recipe.title} 
           className="object-cover w-full h-full"
+          onLoad={() => setImageLoaded(true)}
+          style={{ display: imageLoaded ? 'block' : 'none' }}
         />
         
         {/* Author overlay */}
