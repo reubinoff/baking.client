@@ -44,7 +44,7 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
 
   return (
     <Card 
-      className="overflow-hidden h-full flex flex-col cursor-pointer transition-all duration-300 hover:scale-[1.02] bg-gradient-to-br from-[#f8f4e8] to-[#e6d7b8]"
+      className="overflow-hidden h-full flex flex-col cursor-pointer transition-all duration-300 hover:scale-[1.02] bg-gradient-to-br from-[#f5f0e1] to-[#ede4d0]"
       onClick={handleCardClick}
     >
       <div className="relative aspect-square overflow-hidden">
@@ -67,8 +67,8 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
         />
         
         {/* Author overlay */}
-        <div className="absolute top-0 left-0 p-3 flex items-center space-x-2 bg-gradient-to-r from-black/70 to-transparent text-white rounded-br-lg">
-          <Avatar className="h-8 w-8 border border-white/50">
+        <div className="absolute top-0 left-0 p-3 flex items-center space-x-2 bg-gradient-to-r from-[#f5f0e1]/70 to-transparent text-[#5c4f3c] rounded-br-lg">
+          <Avatar className="h-8 w-8 border border-[#5c4f3c]/50">
             <AvatarImage src={recipe.author.avatar} alt={recipe.author.name} />
             <AvatarFallback className="bg-primary text-primary-foreground">{recipe.author.name.charAt(0)}</AvatarFallback>
           </Avatar>
