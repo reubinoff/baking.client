@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { useLocation } from 'wouter';
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -13,9 +14,10 @@ interface RecipeCardProps {
 export function RecipeCard({ recipe }: RecipeCardProps) {
   const [liked, setLiked] = useState<boolean>(false);
   const [likesCount, setLikesCount] = useState<number>(recipe.likes);
+  const [, setLocation] = useLocation();
 
   const handleLike = (event: React.MouseEvent) => {
-    // Stop event propagation to prevent opening the recipe detail
+    // Stop event propagation to prevent navigating to the recipe detail
     event.stopPropagation();
     
     if (liked) {
@@ -35,8 +37,15 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
     return remainingMinutes > 0 ? `${hours}h ${remainingMinutes}m` : `${hours}h`;
   };
 
+  const handleCardClick = () => {
+    setLocation(`/recipe/${recipe.id}`);
+  };
+
   return (
-    <Card className="overflow-hidden h-full flex flex-col">
+    <Card 
+      className="overflow-hidden h-full flex flex-col cursor-pointer transition-transform hover:scale-[1.02]"
+      onClick={handleCardClick}
+    >
       <div className="relative aspect-square overflow-hidden">
         <img 
           src={recipe.imageUrl} 
@@ -76,11 +85,7 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
         
         <h3 className="font-bold text-lg">{recipe.title}</h3>
         <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{recipe.description}</p>
-        
-
       </CardContent>
-      
-
     </Card>
   );
 } 
