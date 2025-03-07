@@ -1,10 +1,12 @@
+import { useState, useEffect } from 'react';
 import { Recipe } from '@/lib/mockData';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Clock, ChefHat, Utensils, ScrollText } from 'lucide-react';
+import { Clock, ChefHat, Utensils, ScrollText, ImageIcon } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface RecipeDetailDialogProps {
   recipe: Recipe;
@@ -13,6 +15,15 @@ interface RecipeDetailDialogProps {
 }
 
 export function RecipeDetailDialog({ recipe, open, onOpenChange }: RecipeDetailDialogProps) {
+  const [imageLoaded, setImageLoaded] = useState<boolean>(false);
+
+  // Reset image loaded state when dialog opens with a new recipe
+  useEffect(() => {
+    if (open) {
+      setImageLoaded(false);
+    }
+  }, [open, recipe.id]);
+
   const formatTime = (minutes: number): string => {
     if (minutes < 60) {
       return `${minutes} minutes`;
@@ -51,11 +62,23 @@ export function RecipeDetailDialog({ recipe, open, onOpenChange }: RecipeDetailD
           <p className="text-muted-foreground mt-2">{recipe.description}</p>
         </DialogHeader>
 
-        <div className="mt-4 rounded-md overflow-hidden">
+        <div className="mt-4 rounded-md overflow-hidden relative" style={{ height: '250px' }}>
+          {!imageLoaded && (
+            <div className="absolute inset-0 flex items-center justify-center bg-muted h-full w-full">
+              <Skeleton className="absolute inset-0 w-full h-full" />
+              <div className="relative z-10 flex flex-col items-center justify-center gap-2">
+                <ImageIcon className="h-10 w-10 text-muted-foreground/50 animate-pulse" />
+                <div className="h-2 w-24 bg-muted-foreground/20 rounded-full animate-pulse" />
+                <div className="h-2 w-16 bg-muted-foreground/20 rounded-full animate-pulse" />
+              </div>
+            </div>
+          )}
           <img 
             src={recipe.imageUrl} 
             alt={recipe.title} 
-            className="w-full h-auto object-cover max-h-[300px]"
+            className={`w-full h-full object-cover ${!imageLoaded ? 'invisible' : ''}`}
+            style={{ maxHeight: '250px', display: imageLoaded ? 'block' : 'none' }}
+            onLoad={() => setImageLoaded(true)}
           />
         </div>
 

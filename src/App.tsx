@@ -4,7 +4,6 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
-import Navbar from "@/components/layout/navbar";
 
 function Router() {
   return (
@@ -19,7 +18,6 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen flex flex-col">
-        <Navbar />
         <main className="flex-1">
           <Router />
         </main>

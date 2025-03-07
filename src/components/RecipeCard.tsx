@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Heart, Clock, ChefHat } from 'lucide-react';
 import { Recipe } from '@/lib/mockData';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -14,7 +14,10 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
   const [liked, setLiked] = useState<boolean>(false);
   const [likesCount, setLikesCount] = useState<number>(recipe.likes);
 
-  const handleLike = () => {
+  const handleLike = (event: React.MouseEvent) => {
+    // Stop event propagation to prevent opening the recipe detail
+    event.stopPropagation();
+    
     if (liked) {
       setLikesCount(likesCount - 1);
     } else {
@@ -34,20 +37,21 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
 
   return (
     <Card className="overflow-hidden h-full flex flex-col">
-      <CardHeader className="p-3 flex flex-row items-center space-x-2">
-        <Avatar className="h-8 w-8">
-          <AvatarImage src={recipe.author.avatar} alt={recipe.author.name} />
-          <AvatarFallback>{recipe.author.name.charAt(0)}</AvatarFallback>
-        </Avatar>
-        <div className="font-medium text-sm">{recipe.author.name}</div>
-      </CardHeader>
-      
       <div className="relative aspect-square overflow-hidden">
         <img 
           src={recipe.imageUrl} 
           alt={recipe.title} 
           className="object-cover w-full h-full"
         />
+        
+        {/* Author overlay */}
+        <div className="absolute top-0 left-0 p-3 flex items-center space-x-2 bg-gradient-to-r from-black/70 to-transparent text-white rounded-br-lg">
+          <Avatar className="h-8 w-8 border border-white/50">
+            <AvatarImage src={recipe.author.avatar} alt={recipe.author.name} />
+            <AvatarFallback className="bg-primary text-primary-foreground">{recipe.author.name.charAt(0)}</AvatarFallback>
+          </Avatar>
+          <div className="font-medium text-sm">{recipe.author.name}</div>
+        </div>
       </div>
       
       <CardContent className="p-3 flex-grow">
@@ -76,11 +80,7 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
 
       </CardContent>
       
-      <CardFooter className="p-3 pt-0 text-sm text-muted-foreground">
-        <div className="flex justify-between w-full">
-          <span>{likesCount} likes</span>
-        </div>
-      </CardFooter>
+
     </Card>
   );
 } 

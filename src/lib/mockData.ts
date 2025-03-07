@@ -280,5 +280,114 @@ export const mockRecipes: Recipe[] = [
     cookTime: 15,
     tags: ['soup', 'tomato', 'creamy', 'comfort'],
     createdAt: '2023-12-03T10:10:00Z'
-  }
+  },
+  {
+    id: '8',
+    title: 'Beef Wellington',
+    description: 'Tender beef fillet wrapped in mushroom duxelles, prosciutto, and puff pastry.',
+    imageUrl: 'https://picsum.photos/207',
+    author: {
+      name: 'Gordon Chef',
+      avatar: 'https://i.pravatar.cc/310'
+    },
+    likes: 1876,
+    ingredients: [
+      '1.5kg beef fillet',
+      '500g mushrooms, finely chopped',
+      '4 shallots, finely chopped',
+      '4 cloves garlic, minced',
+      '8 slices prosciutto',
+      '500g puff pastry',
+      '2 egg yolks, beaten',
+      '2 tbsp olive oil',
+      '2 tbsp Dijon mustard',
+      'Salt and pepper to taste'
+    ],
+    instructions: [
+      'Season beef with salt and pepper, then sear in hot oil until browned on all sides.',
+      'Cool beef completely, then brush with Dijon mustard.',
+      'Sauté mushrooms, shallots, and garlic until moisture evaporates.',
+      'Lay out prosciutto slices overlapping, spread mushroom mixture on top.',
+      'Place beef on mushroom mixture and wrap tightly. Refrigerate for 30 minutes.',
+      'Roll out puff pastry, place beef in center, and wrap pastry around beef.',
+      'Brush with beaten egg yolk and score the top with a knife.',
+      'Bake at 400°F (200°C) for 35-40 minutes until golden brown.',
+      'Rest for 10 minutes before slicing and serving.'
+    ],
+    difficulty: 'Hard',
+    prepTime: 90,
+    cookTime: 40,
+    tags: ['beef', 'pastry', 'gourmet', 'dinner'],
+    createdAt: '2023-12-15T18:30:00Z'
+  },
+  {
+    id: '9',
+    title: 'Pad Thai',
+    description: 'Classic Thai stir-fried noodles with a perfect balance of sweet, sour, and savory flavors.',
+    imageUrl: 'https://picsum.photos/208',
+    author: {
+      name: 'Suki Thai',
+      avatar: 'https://i.pravatar.cc/311'
+    },
+    likes: 1543,
+    ingredients: [
+      '200g rice noodles',
+      '200g chicken breast, sliced',
+      '2 eggs, beaten',
+      '100g bean sprouts',
+      '4 green onions, chopped',
+      '50g roasted peanuts, crushed',
+      '2 tbsp vegetable oil',
+      '3 tbsp fish sauce',
+      '3 tbsp tamarind paste',
+      '2 tbsp palm sugar',
+      '2 cloves garlic, minced',
+      'Lime wedges for serving',
+      'Fresh cilantro for garnish'
+    ],
+    instructions: [
+      'Soak rice noodles in warm water for 30 minutes, then drain.',
+      'Mix fish sauce, tamarind paste, and palm sugar to make sauce.',
+      'Heat oil in a pan, add garlic and chicken. Cook until chicken is browned.',
+      'Add bean sprouts, green onions, and peanuts. Cook until fragrant.',
+      'Add rice noodles and sauce. Stir fry until noodles are heated through.',
+      'Garnish with lime wedges and cilantro.'
+    ],
+    difficulty: 'Medium',
+    prepTime: 30,
+    cookTime: 15,
+    tags: ['thai', 'noodles', 'stir-fried', 'savory'],
+    createdAt: '2024-01-20T12:45:00Z'
+  },
+  {
+    id: '10',
+    title: 'Pasta Carbonara',
+    description: 'Creamy pasta with a rich egg and cheese sauce, topped with crispy bacon.',
+    imageUrl: 'https://picsum.photos/209',
+    author: {
+      name: 'John Doe',
+      avatar: 'https://i.pravatar.cc/312'
+    },
+    likes: 1234,
+    ingredients: [
+      '200g pasta', 
+      '100g bacon, diced',
+      '2 eggs',
+      '1 cup grated Parmesan cheese',
+      '1 cup heavy cream',
+      '1 tsp salt',
+      '1 tsp pepper'
+    ],
+    instructions: [
+      'Cook pasta according to package instructions.',
+      'Fry bacon until crispy.',
+      'Beat eggs and mix with Parmesan cheese.',
+      'Add heavy cream and mix with pasta.',
+    ],
+    difficulty: 'Easy',
+    prepTime: 20,
+    cookTime: 15,
+    tags: ['pasta', 'carbonara', 'creamy', 'bacon'],
+    createdAt: '2024-02-25T15:30:00Z'
+  },
 ];
