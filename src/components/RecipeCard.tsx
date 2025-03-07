@@ -67,28 +67,13 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
               <Clock className="h-4 w-4 mr-1" />
               <span>{formatTime(recipe.prepTime + recipe.cookTime)}</span>
             </div>
-            <div className="flex items-center">
-              <ChefHat className="h-4 w-4 mr-1" />
-              <span>{recipe.difficulty}</span>
-            </div>
           </div>
         </div>
         
         <h3 className="font-bold text-lg">{recipe.title}</h3>
         <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{recipe.description}</p>
         
-        <div className="flex flex-wrap gap-1 mt-2">
-          {recipe.tags.slice(0, 3).map((tag) => (
-            <Badge key={tag} variant="secondary" className="text-xs">
-              {tag}
-            </Badge>
-          ))}
-          {recipe.tags.length > 3 && (
-            <Badge variant="outline" className="text-xs">
-              +{recipe.tags.length - 3}
-            </Badge>
-          )}
-        </div>
+
       </CardContent>
       
       <CardFooter className="p-3 pt-0 text-sm text-muted-foreground">
