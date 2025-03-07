@@ -1,5 +1,5 @@
-import '@testing-library/jest-dom';
-import { afterAll, beforeAll } from 'vitest';
+import "@testing-library/jest-dom";
+import { afterAll, beforeAll } from "vitest";
 
 // Global setup for tests
 beforeAll(() => {
@@ -8,4 +8,4 @@ beforeAll(() => {
 
 afterAll(() => {
   // Any global teardown can go here
-}); 
+});

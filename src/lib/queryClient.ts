@@ -1,7 +1,8 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
 
 // TODO: Replace with your API domain
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.yourdomain.com';
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL || "https://api.yourdomain.com";
 
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {
@@ -15,16 +16,16 @@ export async function apiRequest(
   url: string,
   data?: unknown | undefined,
 ): Promise<Response> {
-  const fullUrl = url.startsWith('http') ? url : `${API_BASE_URL}${url}`;
+  const fullUrl = url.startsWith("http") ? url : `${API_BASE_URL}${url}`;
 
   const res = await fetch(fullUrl, {
     method,
     headers: {
-      ...(data ? { 'Content-Type': 'application/json' } : {}),
+      ...(data ? { "Content-Type": "application/json" } : {}),
       // Add any additional headers your API requires
     },
     body: data ? JSON.stringify(data) : undefined,
-    credentials: 'include',
+    credentials: "include",
   });
 
   await throwIfResNotOk(res);
@@ -38,13 +39,13 @@ export const getQueryFn: <T>(options: {
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
     const url = queryKey[0] as string;
-    const fullUrl = url.startsWith('http') ? url : `${API_BASE_URL}${url}`;
+    const fullUrl = url.startsWith("http") ? url : `${API_BASE_URL}${url}`;
 
     const res = await fetch(fullUrl, {
-      credentials: 'include',
+      credentials: "include",
       headers: {
         // Add any additional headers your API requires
-      }
+      },
     });
 
     if (unauthorizedBehavior === "returnNull" && res.status === 401) {

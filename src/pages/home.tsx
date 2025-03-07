@@ -1,7 +1,7 @@
-import { mockRecipes } from '@/lib/mockData';
-import { RecipeGrid } from '@/components/RecipeGrid';
-import { TopBar } from '@/components/TopBar';
-import { BottomNav } from '@/components/BottomNav';
+import { mockRecipes } from "@/lib/mockData";
+import { RecipeGrid } from "@/components/RecipeGrid";
+import { TopBar } from "@/components/TopBar";
+import { BottomNav } from "@/components/BottomNav";
 
 export default function Home() {
   return (

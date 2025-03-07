@@ -25,17 +25,17 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname,  "src"),
+      "@": path.resolve(__dirname, "src"),
       "@shared": path.resolve(__dirname, "shared"),
     },
   },
-  root: '.',
+  root: ".",
   build: {
     outDir: path.resolve(__dirname, "dist"),
     emptyOutDir: true,
   },
   test: {
     globals: true,
-    environment: 'jsdom',
+    environment: "jsdom",
   },
 });

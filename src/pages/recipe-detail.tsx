@@ -1,18 +1,18 @@
-import { useState, useEffect } from 'react';
-import { useRoute } from 'wouter';
-import { mockRecipes, Recipe } from '@/lib/mockData';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Clock, ChefHat, Utensils, ScrollText, ImageIcon } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Button } from '@/components/ui/button';
-import { TopBar } from '@/components/TopBar';
-import { BottomNav } from '@/components/BottomNav';
+import { useState, useEffect } from "react";
+import { useRoute } from "wouter";
+import { mockRecipes, Recipe } from "@/lib/mockData";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Clock, ChefHat, Utensils, ScrollText, ImageIcon } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
+import { TopBar } from "@/components/TopBar";
+import { BottomNav } from "@/components/BottomNav";
 
 export default function RecipeDetail() {
-  const [, params] = useRoute('/recipe/:id');
+  const [, params] = useRoute("/recipe/:id");
   const [recipe, setRecipe] = useState<Recipe | null>(null);
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
   const [usedIngredients, setUsedIngredients] = useState<string[]>([]);
@@ -24,12 +24,12 @@ export default function RecipeDetail() {
     if (params && params.id && params.id !== recipeId) {
       setLoading(true);
       setRecipeId(params.id);
-      const foundRecipe = mockRecipes.find(r => r.id === params.id);
-      
+      const foundRecipe = mockRecipes.find((r) => r.id === params.id);
+
       // Reset states
       setImageLoaded(false);
       setUsedIngredients([]);
-      
+
       // Set recipe and loading state in a single render cycle
       setRecipe(foundRecipe || null);
       setLoading(false);
@@ -46,10 +46,10 @@ export default function RecipeDetail() {
   }, [recipe, imageLoaded]);
 
   const toggleIngredientUsed = (ingredient: string): void => {
-    setUsedIngredients(prevIngredients => {
+    setUsedIngredients((prevIngredients) => {
       if (prevIngredients.includes(ingredient)) {
         // Remove the ingredient if it's already in the list
-        return prevIngredients.filter(item => item !== ingredient);
+        return prevIngredients.filter((item) => item !== ingredient);
       } else {
         // Add the ingredient if it's not in the list
         return [...prevIngredients, ingredient];
@@ -68,50 +68,50 @@ export default function RecipeDetail() {
     }
     const hours = Math.floor(minutes / 60);
     const remainingMinutes = minutes % 60;
-    return remainingMinutes > 0 
-      ? `${hours} hour${hours > 1 ? 's' : ''} ${remainingMinutes} minute${remainingMinutes > 1 ? 's' : ''}` 
-      : `${hours} hour${hours > 1 ? 's' : ''}`;
+    return remainingMinutes > 0
+      ? `${hours} hour${hours > 1 ? "s" : ""} ${remainingMinutes} minute${remainingMinutes > 1 ? "s" : ""}`
+      : `${hours} hour${hours > 1 ? "s" : ""}`;
   };
 
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
-    return new Intl.DateTimeFormat('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
+    return new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     }).format(date);
   };
 
   const getIngredientEmoji = (ingredient: string): string => {
     const emojiMap: Record<string, string> = {
-      flour: '🌾',
-      sugar: '🍬',
-      salt: '🧂',
-      butter: '🧈',
-      egg: '🥚',
-      eggs: '🥚',
-      vanilla: '🌱',
-      chocolate: '🍫',
-      milk: '🥛',
-      cream: '🍶',
-      water: '💧',
-      oil: '🫙',
-      yeast: '🧫',
-      cinnamon: '🌰',
-      lemon: '🍋',
-      orange: '🍊',
-      beef: '🥩',
-      chicken: '🍗',
-      pasta: '🍝',
-      rice: '🍚',
-      tomato: '🍅',
-      tomatoes: '🍅',
-      garlic: '🧄',
-      onion: '🧅',
-      cheese: '🧀',
-      bacon: '🥓',
-      mushroom: '🍄',
-      mushrooms: '🍄',
+      flour: "🌾",
+      sugar: "🍬",
+      salt: "🧂",
+      butter: "🧈",
+      egg: "🥚",
+      eggs: "🥚",
+      vanilla: "🌱",
+      chocolate: "🍫",
+      milk: "🥛",
+      cream: "🍶",
+      water: "💧",
+      oil: "🫙",
+      yeast: "🧫",
+      cinnamon: "🌰",
+      lemon: "🍋",
+      orange: "🍊",
+      beef: "🥩",
+      chicken: "🍗",
+      pasta: "🍝",
+      rice: "🍚",
+      tomato: "🍅",
+      tomatoes: "🍅",
+      garlic: "🧄",
+      onion: "🧅",
+      cheese: "🧀",
+      bacon: "🥓",
+      mushroom: "🍄",
+      mushrooms: "🍄",
     };
 
     for (const [key, emoji] of Object.entries(emojiMap)) {
@@ -120,7 +120,7 @@ export default function RecipeDetail() {
       }
     }
 
-    return '🍽️';
+    return "🍽️";
   };
 
   if (loading) {
@@ -145,8 +145,10 @@ export default function RecipeDetail() {
         <TopBar />
         <div className="container mx-auto px-4 py-8 pt-16 pb-24 flex flex-col items-center justify-center">
           <h1 className="text-2xl font-bold mb-4">Recipe Not Found</h1>
-          <p className="text-wheat-medium mb-6">The recipe you're looking for doesn't exist or has been removed.</p>
-          <Button onClick={() => window.location.href = '/'}>
+          <p className="text-wheat-medium mb-6">
+            The recipe you're looking for doesn't exist or has been removed.
+          </p>
+          <Button onClick={() => (window.location.href = "/")}>
             Back to Recipes
           </Button>
         </div>
@@ -162,19 +164,27 @@ export default function RecipeDetail() {
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center space-x-2 mb-2">
             <Avatar className="h-8 w-8">
-              <AvatarImage src={recipe.author.avatar} alt={recipe.author.name} />
+              <AvatarImage
+                src={recipe.author.avatar}
+                alt={recipe.author.name}
+              />
               <AvatarFallback>{recipe.author.name.charAt(0)}</AvatarFallback>
             </Avatar>
             <div>
               <div className="font-medium text-sm">{recipe.author.name}</div>
-              <div className="text-xs text-wheat-medium">Posted on {formatDate(recipe.createdAt)}</div>
+              <div className="text-xs text-wheat-medium">
+                Posted on {formatDate(recipe.createdAt)}
+              </div>
             </div>
           </div>
-          
+
           <h1 className="text-3xl font-bold mb-2">{recipe.title}</h1>
           <p className="text-wheat-medium mb-6">{recipe.description}</p>
 
-          <div className="rounded-md overflow-hidden relative mb-6" style={{ height: '350px' }}>
+          <div
+            className="rounded-md overflow-hidden relative mb-6"
+            style={{ height: "350px" }}
+          >
             {!imageLoaded ? (
               <div className="absolute inset-0 flex items-center justify-center bg-[hsl(var(--wheat-soft))] h-full w-full">
                 <Skeleton className="absolute inset-0 w-full h-full bg-[hsl(var(--wheat-mild))]" />
@@ -185,9 +195,9 @@ export default function RecipeDetail() {
                 </div>
               </div>
             ) : (
-              <img 
-                src={recipe.imageUrl} 
-                alt={recipe.title} 
+              <img
+                src={recipe.imageUrl}
+                alt={recipe.title}
                 className="w-full h-full object-cover"
               />
             )}
@@ -229,36 +239,53 @@ export default function RecipeDetail() {
 
           <Tabs defaultValue="ingredients">
             <TabsList className="wheat-tabs-list grid w-full grid-cols-2">
-              <TabsTrigger value="ingredients" className="wheat-tabs-trigger flex items-center">
+              <TabsTrigger
+                value="ingredients"
+                className="wheat-tabs-trigger flex items-center"
+              >
                 <ScrollText className="h-4 w-4 mr-2 text-wheat-medium" />
                 Ingredients
               </TabsTrigger>
-              <TabsTrigger value="instructions" className="wheat-tabs-trigger flex items-center">
+              <TabsTrigger
+                value="instructions"
+                className="wheat-tabs-trigger flex items-center"
+              >
                 <Utensils className="h-4 w-4 mr-2 text-wheat-medium" />
                 Instructions
               </TabsTrigger>
             </TabsList>
-            <TabsContent value="ingredients" className="wheat-tabs-content mt-0">
+            <TabsContent
+              value="ingredients"
+              className="wheat-tabs-content mt-0"
+            >
               <ul className="space-y-3">
                 {recipe.ingredients.map((ingredient, index) => {
                   const isUsed = isIngredientUsed(ingredient);
-                  
+
                   // Try to split the ingredient into quantity and name
-                  const parts = ingredient.match(/^([\d./]+ ?[a-zA-Z]* )?(.+)$/);
-                  const quantity = parts && parts[1] ? parts[1].trim() : '';
+                  const parts = ingredient.match(
+                    /^([\d./]+ ?[a-zA-Z]* )?(.+)$/,
+                  );
+                  const quantity = parts && parts[1] ? parts[1].trim() : "";
                   const name = parts && parts[2] ? parts[2].trim() : ingredient;
-                  
+
                   return (
-                    <li 
-                      key={index} 
+                    <li
+                      key={index}
                       className="ingredient-item"
                       onClick={() => toggleIngredientUsed(ingredient)}
-                      title={isUsed ? "Click to mark as unused" : "Click to mark as used"}
+                      title={
+                        isUsed
+                          ? "Click to mark as unused"
+                          : "Click to mark as used"
+                      }
                     >
                       <span className="inline-flex items-center justify-center h-8 w-8 text-lg mr-3">
                         {getIngredientEmoji(name)}
                       </span>
-                      <span className={`text-md ${isUsed ? 'line-through text-wheat-light' : ''}`}>
+                      <span
+                        className={`text-md ${isUsed ? "line-through text-wheat-light" : ""}`}
+                      >
                         {quantity && <strong>{quantity}</strong>} {name}
                       </span>
                     </li>
@@ -266,34 +293,49 @@ export default function RecipeDetail() {
                 })}
               </ul>
             </TabsContent>
-            <TabsContent value="instructions" className="wheat-tabs-content mt-0">
+            <TabsContent
+              value="instructions"
+              className="wheat-tabs-content mt-0"
+            >
               {recipe.steps ? (
                 <div className="space-y-8">
                   <h2 className="text-2xl font-bold mb-8">Directions</h2>
                   {recipe.steps.map((step, index) => (
                     <div key={index} className="mb-12">
                       <div className="mb-4 flex items-center">
-                        <div className="mr-4 text-3xl font-light text-primary/80">{index + 1}</div>
+                        <div className="mr-4 text-3xl font-light text-primary/80">
+                          {index + 1}
+                        </div>
                         <div className="step-divider"></div>
                       </div>
-                      
+
                       {step.ingredients && step.ingredients.length > 0 && (
                         <div className="ingredients-section">
                           <ul className="space-y-2 pl-2">
                             {step.ingredients.map((ingredient, idx) => {
-                              const isWhiskey = ingredient.toLowerCase().includes('whiskey');
+                              const isWhiskey = ingredient
+                                .toLowerCase()
+                                .includes("whiskey");
                               const isUsed = isIngredientUsed(ingredient);
                               return (
-                                <li 
-                                  key={idx} 
+                                <li
+                                  key={idx}
                                   className="ingredient-item"
-                                  onClick={() => toggleIngredientUsed(ingredient)}
-                                  title={isUsed ? "Click to mark as unused" : "Click to mark as used"}
+                                  onClick={() =>
+                                    toggleIngredientUsed(ingredient)
+                                  }
+                                  title={
+                                    isUsed
+                                      ? "Click to mark as unused"
+                                      : "Click to mark as used"
+                                  }
                                 >
                                   <span className="inline-flex items-center justify-center h-7 w-7 text-lg opacity-80">
                                     {getIngredientEmoji(ingredient)}
                                   </span>
-                                  <span className={`text-md ${isWhiskey || isUsed ? 'line-through text-wheat-light' : 'text-wheat-dark'}`}>
+                                  <span
+                                    className={`text-md ${isWhiskey || isUsed ? "line-through text-wheat-light" : "text-wheat-dark"}`}
+                                  >
                                     {ingredient}
                                   </span>
                                 </li>
@@ -302,8 +344,10 @@ export default function RecipeDetail() {
                           </ul>
                         </div>
                       )}
-                      
-                      <p className="text-lg leading-relaxed pl-2">{step.instruction}</p>
+
+                      <p className="text-lg leading-relaxed pl-2">
+                        {step.instruction}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -312,7 +356,9 @@ export default function RecipeDetail() {
                   {recipe.instructions.map((instruction, index) => (
                     <div key={index} className="mb-6">
                       <div className="mb-2 flex items-center">
-                        <div className="mr-4 text-xl font-semibold">Step {index + 1}</div>
+                        <div className="mr-4 text-xl font-semibold">
+                          Step {index + 1}
+                        </div>
                       </div>
                       <p className="text-lg leading-relaxed">{instruction}</p>
                     </div>
@@ -326,4 +372,4 @@ export default function RecipeDetail() {
       <BottomNav />
     </div>
   );
-} 
+}

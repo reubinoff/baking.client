@@ -1,5 +1,5 @@
-import { Recipe } from '@/lib/mockData';
-import { RecipeCard } from './RecipeCard';
+import { Recipe } from "@/lib/mockData";
+import { RecipeCard } from "./RecipeCard";
 
 interface RecipeGridProps {
   recipes: Recipe[];
@@ -15,4 +15,4 @@ export function RecipeGrid({ recipes }: RecipeGridProps) {
       ))}
     </div>
   );
-} 
+}
