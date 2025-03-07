@@ -1,3 +1,8 @@
+export interface RecipeStep {
+  instruction: string;
+  ingredients?: string[];
+}
+
 export interface Recipe {
   id: string;
   title: string;
@@ -9,6 +14,7 @@ export interface Recipe {
   };
   likes: number;
   ingredients: string[];
+  steps?: RecipeStep[];
   instructions: string[];
   difficulty: 'Easy' | 'Medium' | 'Hard';
   prepTime: number; // in minutes
@@ -38,6 +44,40 @@ export const mockRecipes: Recipe[] = [
       '2 large eggs',
       '2 tsp vanilla extract',
       '2 cups semi-sweet chocolate chips'
+    ],
+    steps: [
+      {
+        instruction: 'Preheat oven to 375°F (190°C).',
+        ingredients: []
+      },
+      {
+        instruction: 'Combine flour, baking soda, and salt in a small bowl.',
+        ingredients: ['flour', 'baking soda', 'salt']
+      },
+      {
+        instruction: 'Beat butter, granulated sugar, and brown sugar in a large mixer bowl.',
+        ingredients: ['butter', 'granulated sugar', 'brown sugar']
+      },
+      {
+        instruction: 'Add eggs one at a time, beating well after each addition. Beat in vanilla.',
+        ingredients: ['eggs', 'vanilla extract']
+      },
+      {
+        instruction: 'Gradually beat in flour mixture. Stir in chocolate chips.',
+        ingredients: ['flour mixture', 'chocolate chips']
+      },
+      {
+        instruction: 'Drop by rounded tablespoon onto ungreased baking sheets.',
+        ingredients: []
+      },
+      {
+        instruction: 'Bake for 9 to 11 minutes or until golden brown.',
+        ingredients: []
+      },
+      {
+        instruction: 'Cool on baking sheets for 2 minutes; remove to wire racks to cool completely.',
+        ingredients: []
+      }
     ],
     instructions: [
       'Preheat oven to 375°F (190°C).',
@@ -70,6 +110,40 @@ export const mockRecipes: Recipe[] = [
       '350g water',
       '100g active sourdough starter',
       '10g salt'
+    ],
+    steps: [
+      {
+        instruction: 'Mix flour and water, let rest for 30 minutes (autolyse).',
+        ingredients: ['flour', 'water']
+      },
+      {
+        instruction: 'Add starter and salt, mix until combined.',
+        ingredients: ['starter', 'salt']
+      },
+      {
+        instruction: 'Perform stretch and folds every 30 minutes for 2-3 hours.',
+        ingredients: []
+      },
+      {
+        instruction: 'Shape the dough and place in a floured banneton.',
+        ingredients: []
+      },
+      {
+        instruction: 'Refrigerate overnight for 12-16 hours.',
+        ingredients: []
+      },
+      {
+        instruction: 'Preheat oven with Dutch oven to 500°F (260°C).',
+        ingredients: []
+      },
+      {
+        instruction: 'Score the dough and bake covered for 20 minutes.',
+        ingredients: []
+      },
+      {
+        instruction: 'Reduce temperature to 450°F (230°C) and bake uncovered for 20-25 minutes.',
+        ingredients: []
+      }
     ],
     instructions: [
       'Mix flour and water, let rest for 30 minutes (autolyse).',
@@ -106,6 +180,43 @@ export const mockRecipes: Recipe[] = [
       'Food coloring (optional)',
       '150g dark chocolate',
       '100ml heavy cream'
+    ],
+    steps: [
+      {
+        instruction: 'Sift almond flour and powdered sugar together.',
+        ingredients: ['almond flour', 'powdered sugar']
+      },
+      {
+        instruction: 'Beat egg whites with cream of tartar until foamy.',
+        ingredients: ['egg whites', 'cream of tartar']
+      },
+      {
+        instruction: 'Gradually add granulated sugar and beat until stiff peaks form.',
+        ingredients: ['granulated sugar']
+      },
+      {
+        instruction: 'Fold in dry ingredients and food coloring if using.',
+        ingredients: ['almond flour', 'powdered sugar', 'food coloring']
+      },
+      {
+        instruction: 'Pipe 1.5-inch rounds onto parchment-lined baking sheets.',
+        ingredients: []
+      },
+      {
+        instruction: 'Let sit for 30-60 minutes until a skin forms.',
+        ingredients: []
+      },
+      {
+        instruction: 'Bake at 300°F (150°C) for 15-18 minutes.',
+        ingredients: []
+      },
+      {
+        instruction: 'For ganache, heat cream and pour over chocolate. Stir until smooth.',
+        ingredients: ['heavy cream', 'dark chocolate']
+      },
+      {
+        instruction: 'Once cooled, sandwich cookies with ganache filling.'
+      }
     ],
     instructions: [
       'Sift almond flour and powdered sugar together.',
@@ -150,6 +261,51 @@ export const mockRecipes: Recipe[] = [
       '2 cups powdered sugar',
       '1 tsp vanilla extract'
     ],
+    steps: [
+      {
+        instruction: 'Mix flour, sugar, salt, and yeast in a large bowl.',
+        ingredients: ['flour', 'sugar', 'salt', 'yeast']
+      },
+      {
+        instruction: 'Add warm milk, butter, and eggs. Mix until a soft dough forms.',
+        ingredients: ['warm milk', 'butter', 'eggs']
+      },
+      {
+        instruction: 'Knead for 5-7 minutes until smooth and elastic.',
+        ingredients: []
+      },
+      {
+        instruction: 'Let rise in a warm place for 1 hour or until doubled in size.',
+        ingredients: []
+      },
+      {
+        instruction: 'Roll out dough into a 16x21 inch rectangle.',
+        ingredients: []
+      },
+      {
+        instruction: 'Spread with butter and sprinkle with cinnamon sugar mixture.',
+        ingredients: ['butter', 'cinnamon sugar mixture']
+      },
+      {
+        instruction: 'Roll up dough and cut into 12 rolls.',
+        ingredients: []
+      },
+      {
+        instruction: 'Place in a greased baking dish and let rise for 30 minutes.',
+        ingredients: []
+      },
+      {
+        instruction: 'Bake at 350°F (175°C) for 25-30 minutes.',
+        ingredients: []
+      },
+      {
+        instruction: 'Beat cream cheese, butter, powdered sugar, and vanilla for frosting.',
+        ingredients: ['cream cheese', 'butter', 'powdered sugar', 'vanilla extract']
+      },
+      {
+        instruction: 'Spread frosting on warm rolls before serving.'
+      }
+    ],
     instructions: [
       'Mix flour, sugar, salt, and yeast in a large bowl.',
       'Add warm milk, butter, and eggs. Mix until a soft dough forms.',
@@ -191,6 +347,43 @@ export const mockRecipes: Recipe[] = [
       '120ml lemon juice (about 3-4 lemons)',
       '100g butter, cubed'
     ],
+    steps: [
+      {
+        instruction: 'For the pastry, mix flour, butter, and sugar until crumbly.',
+        ingredients: ['flour', 'butter', 'sugar']
+      },
+      {
+        instruction: 'Add egg yolk and water, mix until dough forms.',
+        ingredients: ['egg yolk', 'water']
+      },
+      {
+        instruction: 'Chill for 30 minutes, then roll out and line a 9-inch tart pan.',
+        ingredients: []
+      },
+      {
+        instruction: 'Blind bake at 350°F (175°C) for 15 minutes.',
+        ingredients: []
+      },
+      {
+        instruction: 'For the filling, whisk eggs, sugar, lemon zest, and juice in a heatproof bowl.',
+        ingredients: ['eggs', 'sugar', 'lemon zest', 'lemon juice']
+      },
+      {
+        instruction: 'Place over simmering water and stir until thickened.',
+        ingredients: []
+      },
+      {
+        instruction: 'Remove from heat and stir in butter until melted and smooth.',
+        ingredients: ['butter']
+      },
+      {
+        instruction: 'Pour filling into the pastry case and bake for 15-20 minutes until set.',
+        ingredients: []
+      },
+      {
+        instruction: 'Cool completely before serving.'
+      }
+    ],
     instructions: [
       'For the pastry, mix flour, butter, and sugar until crumbly.',
       'Add egg yolk and water, mix until dough forms.',
@@ -226,6 +419,51 @@ export const mockRecipes: Recipe[] = [
       '300ml cold water',
       '250g cold unsalted butter',
       '1 egg (for egg wash)'
+    ],
+    steps: [
+      {
+        instruction: 'Mix flour, salt, sugar, yeast, and water until a dough forms.',
+        ingredients: ['flour', 'salt', 'sugar', 'yeast', 'water']
+      },
+      {
+        instruction: 'Knead for 5 minutes, then refrigerate for 1 hour.',
+        ingredients: []
+      },
+      {
+        instruction: 'Roll out butter between parchment paper into a rectangle.',
+        ingredients: []
+      },
+      {
+        instruction: 'Roll out dough and place butter in the center.',
+        ingredients: []
+      },
+      {
+        instruction: 'Fold dough over butter and seal edges (first lamination).',
+        ingredients: []
+      },
+      {
+        instruction: 'Roll out and fold in thirds (like a letter). Refrigerate for 1 hour.',
+        ingredients: []
+      },
+      {
+        instruction: 'Repeat rolling and folding two more times with 1-hour rests in between.',
+        ingredients: []
+      },
+      {
+        instruction: 'Roll out dough to 1/4 inch thickness and cut into triangles.',
+        ingredients: []
+      },
+      {
+        instruction: 'Roll triangles from base to tip and shape into crescents.',
+        ingredients: []
+      },
+      {
+        instruction: 'Let rise for 2 hours, then brush with egg wash.',
+        ingredients: []
+      },
+      {
+        instruction: 'Bake at 400°F (200°C) for 15-20 minutes until golden brown.'
+      }
     ],
     instructions: [
       'Mix flour, salt, sugar, yeast, and water until a dough forms.',
@@ -267,6 +505,31 @@ export const mockRecipes: Recipe[] = [
       '1 cup heavy cream',
       '1/2 cup grated Parmesan cheese'
     ],
+    steps: [
+      {
+        instruction: 'In a large pot, heat olive oil over medium heat.',
+        ingredients: ['olive oil']
+      },
+      {
+        instruction: 'Add onion and garlic, cook until fragrant.',
+        ingredients: ['onion', 'garlic']
+      },
+      {
+        instruction: 'Add tomatoes, salt, and pepper, cook until tomatoes are soft.',
+        ingredients: ['tomatoes', 'salt', 'pepper']
+      },
+      {
+        instruction: 'Add chicken broth and simmer for 15 minutes.',
+        ingredients: ['chicken broth']
+      },
+      {
+        instruction: 'Blend soup until smooth.',
+        ingredients: []
+      },
+      {
+        instruction: 'Add heavy cream and Parmesan cheese, stir until heated through.'
+      }
+    ],
     instructions: [
       'In a large pot, heat olive oil over medium heat.',
       'Add onion and garlic, cook until fragrant.',
@@ -302,6 +565,43 @@ export const mockRecipes: Recipe[] = [
       '2 tbsp olive oil',
       '2 tbsp Dijon mustard',
       'Salt and pepper to taste'
+    ],
+    steps: [
+      {
+        instruction: 'Season beef with salt and pepper, then sear in hot oil until browned on all sides.',
+        ingredients: ['beef', 'salt', 'pepper', 'oil']
+      },
+      {
+        instruction: 'Cool beef completely, then brush with Dijon mustard.',
+        ingredients: ['beef', 'Dijon mustard']
+      },
+      {
+        instruction: 'Sauté mushrooms, shallots, and garlic until moisture evaporates.',
+        ingredients: ['mushrooms', 'shallots', 'garlic']
+      },
+      {
+        instruction: 'Lay out prosciutto slices overlapping, spread mushroom mixture on top.',
+        ingredients: ['prosciutto', 'mushroom mixture']
+      },
+      {
+        instruction: 'Place beef on mushroom mixture and wrap tightly. Refrigerate for 30 minutes.',
+        ingredients: ['beef', 'mushroom mixture']
+      },
+      {
+        instruction: 'Roll out puff pastry, place beef in center, and wrap pastry around beef.',
+        ingredients: ['puff pastry', 'beef']
+      },
+      {
+        instruction: 'Brush with beaten egg yolk and score the top with a knife.',
+        ingredients: ['beaten egg yolk']
+      },
+      {
+        instruction: 'Bake at 400°F (200°C) for 35-40 minutes until golden brown.',
+        ingredients: []
+      },
+      {
+        instruction: 'Rest for 10 minutes before slicing and serving.'
+      }
     ],
     instructions: [
       'Season beef with salt and pepper, then sear in hot oil until browned on all sides.',
@@ -345,6 +645,31 @@ export const mockRecipes: Recipe[] = [
       'Lime wedges for serving',
       'Fresh cilantro for garnish'
     ],
+    steps: [
+      {
+        instruction: 'Soak rice noodles in warm water for 30 minutes, then drain.',
+        ingredients: ['rice noodles', 'warm water']
+      },
+      {
+        instruction: 'Mix fish sauce, tamarind paste, and palm sugar to make sauce.',
+        ingredients: ['fish sauce', 'tamarind paste', 'palm sugar']
+      },
+      {
+        instruction: 'Heat oil in a pan, add garlic and chicken. Cook until chicken is browned.',
+        ingredients: ['oil', 'garlic', 'chicken']
+      },
+      {
+        instruction: 'Add bean sprouts, green onions, and peanuts. Cook until fragrant.',
+        ingredients: ['bean sprouts', 'green onions', 'peanuts']
+      },
+      {
+        instruction: 'Add rice noodles and sauce. Stir fry until noodles are heated through.',
+        ingredients: ['rice noodles', 'sauce']
+      },
+      {
+        instruction: 'Garnish with lime wedges and cilantro.'
+      }
+    ],
     instructions: [
       'Soak rice noodles in warm water for 30 minutes, then drain.',
       'Mix fish sauce, tamarind paste, and palm sugar to make sauce.',
@@ -378,11 +703,28 @@ export const mockRecipes: Recipe[] = [
       '1 tsp salt',
       '1 tsp pepper'
     ],
+    steps: [
+      {
+        instruction: 'Cook pasta according to package instructions.',
+        ingredients: ['pasta']
+      },
+      {
+        instruction: 'Fry bacon until crispy.',
+        ingredients: ['bacon']
+      },
+      {
+        instruction: 'Beat eggs and mix with Parmesan cheese.',
+        ingredients: ['eggs', 'Parmesan cheese']
+      },
+      {
+        instruction: 'Add heavy cream and mix with pasta.'
+      }
+    ],
     instructions: [
       'Cook pasta according to package instructions.',
       'Fry bacon until crispy.',
       'Beat eggs and mix with Parmesan cheese.',
-      'Add heavy cream and mix with pasta.',
+      'Add heavy cream and mix with pasta.'
     ],
     difficulty: 'Easy',
     prepTime: 20,
@@ -391,3 +733,8 @@ export const mockRecipes: Recipe[] = [
     createdAt: '2024-02-25T15:30:00Z'
   },
 ];
+
+// Helper function to convert steps to instructions
+function stepsToInstructions(steps: RecipeStep[]): string[] {
+  return steps.map(step => step.instruction);
+}
