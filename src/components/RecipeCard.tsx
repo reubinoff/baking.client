@@ -43,7 +43,7 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
 
   return (
     <Card 
-      className="overflow-hidden h-full flex flex-col cursor-pointer transition-transform hover:scale-[1.02]"
+      className="overflow-hidden h-full flex flex-col cursor-pointer transition-transform hover:scale-[1.02] bg-[#f5f0e1]"
       onClick={handleCardClick}
     >
       <div className="relative aspect-square overflow-hidden">
@@ -84,7 +84,6 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
         </div>
         
         <h3 className="font-bold text-lg">{recipe.title}</h3>
-        <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{recipe.description}</p>
       </CardContent>
     </Card>
   );

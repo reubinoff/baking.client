@@ -5,7 +5,7 @@ import { BottomNav } from "@/components/BottomNav";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen w-full bg-background">
+    <div className="app-background w-full">
       <TopBar />
       <div className="pt-16 pb-24 flex items-center justify-center min-h-screen">
         <Card className="w-full max-w-md mx-4">

@@ -18,7 +18,7 @@ export function TopBar({ className }: TopBarProps) {
 
   return (
     <div className={cn(
-      'fixed top-0 left-0 right-0 bg-background border-b border-border py-2 px-4 z-50 shadow-sm',
+      'fixed top-0 left-0 right-0 bg-[hsl(var(--wheat-light))] border-b border-border py-2 px-4 z-50 shadow-sm',
       className
     )}>
       <div className="flex items-center justify-between">

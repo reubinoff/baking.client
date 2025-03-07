@@ -5,7 +5,7 @@ import { BottomNav } from '@/components/BottomNav';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="app-background">
       <TopBar />
       <div className="container mx-auto px-4 py-8 pt-16 pb-24">
         <RecipeGrid recipes={mockRecipes} />

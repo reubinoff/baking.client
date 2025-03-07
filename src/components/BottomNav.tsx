@@ -18,7 +18,7 @@ export function BottomNav({ className }: BottomNavProps) {
 
   return (
     <div className={cn(
-      'fixed bottom-0 left-0 right-0 bg-background border-t border-border py-2 px-4 z-50 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]',
+      'fixed bottom-0 left-0 right-0 bg-[hsl(var(--wheat-light))] border-t border-border py-2 px-4 z-50 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]',
       className
     )}>
       <div className="flex items-center justify-around">

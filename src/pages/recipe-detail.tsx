@@ -125,7 +125,7 @@ export default function RecipeDetail() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="app-background">
         <TopBar />
         <div className="container mx-auto px-4 py-8 pt-16 pb-24">
           <div className="animate-pulse">
@@ -141,7 +141,7 @@ export default function RecipeDetail() {
 
   if (!recipe) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="app-background">
         <TopBar />
         <div className="container mx-auto px-4 py-8 pt-16 pb-24 flex flex-col items-center justify-center">
           <h1 className="text-2xl font-bold mb-4">Recipe Not Found</h1>
@@ -156,7 +156,7 @@ export default function RecipeDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="app-background">
       <TopBar />
       <div className="container mx-auto px-4 py-8 pt-16 pb-24">
         <div className="max-w-3xl mx-auto">
@@ -202,24 +202,24 @@ export default function RecipeDetail() {
           </div>
 
           <div className="grid grid-cols-3 gap-4 mb-6">
-            <div className="flex flex-col items-center justify-center p-3 bg-muted rounded-md">
-              <Clock className="h-5 w-5 mb-1" />
+            <div className="recipe-card">
+              <Clock className="h-5 w-5 mb-1 text-wheat-medium" />
               <div className="text-xs text-center">
-                <div className="font-medium">Total Time</div>
+                <div className="font-medium text-wheat-dark">Total Time</div>
                 <div>{formatTime(recipe.prepTime + recipe.cookTime)}</div>
               </div>
             </div>
-            <div className="flex flex-col items-center justify-center p-3 bg-muted rounded-md">
-              <ChefHat className="h-5 w-5 mb-1" />
+            <div className="recipe-card">
+              <ChefHat className="h-5 w-5 mb-1 text-wheat-medium" />
               <div className="text-xs text-center">
-                <div className="font-medium">Difficulty</div>
+                <div className="font-medium text-wheat-dark">Difficulty</div>
                 <div>{recipe.difficulty}</div>
               </div>
             </div>
-            <div className="flex flex-col items-center justify-center p-3 bg-muted rounded-md">
-              <Utensils className="h-5 w-5 mb-1" />
+            <div className="recipe-card">
+              <Utensils className="h-5 w-5 mb-1 text-wheat-medium" />
               <div className="text-xs text-center">
-                <div className="font-medium">Prep Time</div>
+                <div className="font-medium text-wheat-dark">Prep Time</div>
                 <div>{formatTime(recipe.prepTime)}</div>
               </div>
             </div>
@@ -251,14 +251,14 @@ export default function RecipeDetail() {
                   return (
                     <li 
                       key={index} 
-                      className="flex items-center cursor-pointer hover:bg-gray-50 p-2 rounded transition-colors"
+                      className="ingredient-item"
                       onClick={() => toggleIngredientUsed(ingredient)}
                       title={isUsed ? "Click to mark as unused" : "Click to mark as used"}
                     >
                       <span className="inline-flex items-center justify-center h-8 w-8 text-lg mr-3">
                         {getIngredientEmoji(name)}
                       </span>
-                      <span className={`text-md ${isUsed ? 'line-through text-gray-400' : ''}`}>
+                      <span className={`text-md ${isUsed ? 'line-through text-wheat-light' : ''}`}>
                         {quantity && <strong>{quantity}</strong>} {name}
                       </span>
                     </li>
@@ -274,11 +274,11 @@ export default function RecipeDetail() {
                     <div key={index} className="mb-12">
                       <div className="mb-4 flex items-center">
                         <div className="mr-4 text-3xl font-light text-primary/80">{index + 1}</div>
-                        <div className="h-0.5 flex-grow bg-gray-100"></div>
+                        <div className="step-divider"></div>
                       </div>
                       
                       {step.ingredients && step.ingredients.length > 0 && (
-                        <div className="mb-5 mt-3 bg-gray-50 rounded-md p-3">
+                        <div className="ingredients-section">
                           <ul className="space-y-2 pl-2">
                             {step.ingredients.map((ingredient, idx) => {
                               const isWhiskey = ingredient.toLowerCase().includes('whiskey');
@@ -286,14 +286,14 @@ export default function RecipeDetail() {
                               return (
                                 <li 
                                   key={idx} 
-                                  className="flex items-center space-x-3 cursor-pointer hover:bg-gray-100 p-2 rounded transition-colors"
+                                  className="ingredient-item"
                                   onClick={() => toggleIngredientUsed(ingredient)}
                                   title={isUsed ? "Click to mark as unused" : "Click to mark as used"}
                                 >
                                   <span className="inline-flex items-center justify-center h-7 w-7 text-lg opacity-80">
                                     {getIngredientEmoji(ingredient)}
                                   </span>
-                                  <span className={`text-md ${isWhiskey || isUsed ? 'line-through text-gray-400' : 'text-gray-700'}`}>
+                                  <span className={`text-md ${isWhiskey || isUsed ? 'line-through text-wheat-light' : 'text-wheat-dark'}`}>
                                     {ingredient}
                                   </span>
                                 </li>

@@ -3,11 +3,78 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    
+    /* Wheat color palette */
+    --wheat-light: 39 70% 98%;
+    --wheat-soft: 39 70% 96%;
+    --wheat-mild: 39 65% 94%;
+    --wheat-medium: 39 60% 90%;
+    --wheat-dark: 39 55% 85%;
+    --wheat-text-light: 39 30% 60%;
+    --wheat-text-medium: 39 40% 40%;
+    --wheat-text-dark: 39 50% 25%;
+  }
+
   * {
     @apply border-border;
   }
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .app-background {
+    @apply min-h-screen bg-[hsl(var(--wheat-light))];
+  }
+  
+  .recipe-card {
+    @apply flex flex-col items-center justify-center p-3 bg-[hsl(var(--wheat-soft))] rounded-md border border-[hsl(var(--wheat-medium))] shadow-sm;
+  }
+  
+  .ingredient-item {
+    @apply flex items-center cursor-pointer hover:bg-[hsl(var(--wheat-mild))] p-2 rounded transition-colors;
+  }
+  
+  .ingredients-section {
+    @apply mb-5 mt-3 bg-[hsl(var(--wheat-soft))] rounded-md p-3 border border-[hsl(var(--wheat-medium))];
+  }
+  
+  .step-divider {
+    @apply h-0.5 flex-grow bg-[hsl(var(--wheat-medium))];
+  }
+  
+  .text-wheat-light {
+    @apply text-[hsl(var(--wheat-text-light))];
+  }
+  
+  .text-wheat-medium {
+    @apply text-[hsl(var(--wheat-text-medium))];
+  }
+  
+  .text-wheat-dark {
+    @apply text-[hsl(var(--wheat-text-dark))];
   }
 }
