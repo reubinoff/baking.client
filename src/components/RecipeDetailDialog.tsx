@@ -201,14 +201,9 @@ export function RecipeDetailDialog({ recipe, open, onOpenChange }: RecipeDetailD
                     <span className="inline-flex items-center justify-center h-8 w-8 text-lg mr-3">
                       {getIngredientEmoji(name)}
                     </span>
-                    <div className="flex flex-col">
-                      <span className={`font-medium ${isUsed ? 'line-through text-gray-400' : ''}`}>
-                        {quantity}
-                      </span>
-                      <span className={isUsed ? 'line-through text-gray-400' : ''}>
-                        {name}
-                      </span>
-                    </div>
+                    <span className={`text-md ${isUsed ? 'line-through text-gray-400' : ''}`}>
+                      {quantity && <strong>{quantity}</strong>} {name}
+                    </span>
                   </li>
                 );
               })}
