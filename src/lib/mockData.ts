@@ -25,7 +25,7 @@ export const mockRecipes: Recipe[] = [
     imageUrl: 'https://picsum.photos/200',
     author: {
       name: 'Sarah Baker',
-      avatar: 'https://randomuser.me/api/portraits/women/1.jpg'
+      avatar: 'https://i.pravatar.cc/307'
     },
     likes: 1240,
     ingredients: [
@@ -62,7 +62,7 @@ export const mockRecipes: Recipe[] = [
     imageUrl: 'https://picsum.photos/201',
     author: {
       name: 'Mark Breadman',
-      avatar: 'https://randomuser.me/api/portraits/men/2.jpg'
+      avatar: 'https://i.pravatar.cc/306'
     },
     likes: 892,
     ingredients: [
@@ -94,7 +94,7 @@ export const mockRecipes: Recipe[] = [
     imageUrl: 'https://picsum.photos/202',
     author: {
       name: 'Claire Patisserie',
-      avatar: 'https://randomuser.me/api/portraits/women/3.jpg'
+      avatar: 'https://i.pravatar.cc/305'
     },
     likes: 1567,
     ingredients: [
@@ -131,7 +131,7 @@ export const mockRecipes: Recipe[] = [
     imageUrl: 'https://picsum.photos/203',
     author: {
       name: 'Emma Sweets',
-      avatar: 'https://randomuser.me/api/portraits/women/4.jpg'
+      avatar: 'https://i.pravatar.cc/304'
     },
     likes: 1103,
     ingredients: [
@@ -176,7 +176,7 @@ export const mockRecipes: Recipe[] = [
     imageUrl: 'https://picsum.photos/204',
     author: {
       name: 'David Citrus',
-      avatar: 'https://randomuser.me/api/portraits/men/5.jpg'
+      avatar: 'https://i.pravatar.cc/302'
     },
     likes: 756,
     ingredients: [
@@ -215,7 +215,7 @@ export const mockRecipes: Recipe[] = [
     imageUrl: 'https://picsum.photos/205',
     author: {
       name: 'Pierre Boulanger',
-      avatar: 'https://randomuser.me/api/portraits/men/6.jpg'
+      avatar: 'https://i.pravatar.cc/302'
     },
     likes: 1432,
     ingredients: [
@@ -253,7 +253,7 @@ export const mockRecipes: Recipe[] = [
     imageUrl: 'https://picsum.photos/206',
     author: {
       name: 'John Doe',
-      avatar: 'https://randomuser.me/api/portraits/men/7.jpg'
+      avatar: 'https://i.pravatar.cc/301'
     },
     likes: 987,
     ingredients: [
