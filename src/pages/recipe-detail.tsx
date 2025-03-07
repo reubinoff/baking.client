@@ -15,29 +15,51 @@ export default function RecipeDetail() {
   const [, params] = useRoute('/recipe/:id');
   const [recipe, setRecipe] = useState<Recipe | null>(null);
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
-  const [usedIngredients, setUsedIngredients] = useState<Set<string>>(new Set());
+  const [usedIngredients, setUsedIngredients] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [recipeId, setRecipeId] = useState<string | null>(null);
 
+  // Load recipe data when the route params change
   useEffect(() => {
-    if (params && params.id) {
+    if (params && params.id && params.id !== recipeId) {
+      setLoading(true);
+      setRecipeId(params.id);
       const foundRecipe = mockRecipes.find(r => r.id === params.id);
+      
+      // Reset states
+      setImageLoaded(false);
+      setUsedIngredients([]);
+      
+      // Set recipe and loading state in a single render cycle
       setRecipe(foundRecipe || null);
       setLoading(false);
-      setImageLoaded(false);
-      setUsedIngredients(new Set());
     }
-  }, [params]);
+  }, [params, recipeId]);
+
+  // Preload the image when recipe changes
+  useEffect(() => {
+    if (recipe && !imageLoaded) {
+      const img = new Image();
+      img.src = recipe.imageUrl;
+      img.onload = () => setImageLoaded(true);
+    }
+  }, [recipe, imageLoaded]);
 
   const toggleIngredientUsed = (ingredient: string): void => {
-    setUsedIngredients(prevState => {
-      const newState = new Set(prevState);
-      if (newState.has(ingredient)) {
-        newState.delete(ingredient);
+    setUsedIngredients(prevIngredients => {
+      if (prevIngredients.includes(ingredient)) {
+        // Remove the ingredient if it's already in the list
+        return prevIngredients.filter(item => item !== ingredient);
       } else {
-        newState.add(ingredient);
+        // Add the ingredient if it's not in the list
+        return [...prevIngredients, ingredient];
       }
-      return newState;
     });
+  };
+
+  // Check if an ingredient is marked as used
+  const isIngredientUsed = (ingredient: string): boolean => {
+    return usedIngredients.includes(ingredient);
   };
 
   const formatTime = (minutes: number): string => {
@@ -153,7 +175,7 @@ export default function RecipeDetail() {
           <p className="text-muted-foreground mb-6">{recipe.description}</p>
 
           <div className="rounded-md overflow-hidden relative mb-6" style={{ height: '350px' }}>
-            {!imageLoaded && (
+            {!imageLoaded ? (
               <div className="absolute inset-0 flex items-center justify-center bg-muted h-full w-full">
                 <Skeleton className="absolute inset-0 w-full h-full" />
                 <div className="relative z-10 flex flex-col items-center justify-center gap-2">
@@ -162,13 +184,13 @@ export default function RecipeDetail() {
                   <div className="h-2 w-16 bg-muted-foreground/20 rounded-full animate-pulse" />
                 </div>
               </div>
+            ) : (
+              <img 
+                src={recipe.imageUrl} 
+                alt={recipe.title} 
+                className="w-full h-full object-cover"
+              />
             )}
-            <img 
-              src={recipe.imageUrl} 
-              alt={recipe.title} 
-              className="w-full h-full object-cover"
-              onLoad={() => setImageLoaded(true)}
-            />
           </div>
 
           <div className="flex flex-wrap gap-2 mb-6">
@@ -219,7 +241,7 @@ export default function RecipeDetail() {
             <TabsContent value="ingredients" className="mt-4">
               <ul className="space-y-3">
                 {recipe.ingredients.map((ingredient, index) => {
-                  const isUsed = usedIngredients.has(ingredient);
+                  const isUsed = isIngredientUsed(ingredient);
                   
                   // Try to split the ingredient into quantity and name
                   const parts = ingredient.match(/^([\d./]+ ?[a-zA-Z]* )?(.+)$/);
@@ -260,7 +282,7 @@ export default function RecipeDetail() {
                           <ul className="space-y-2 pl-2">
                             {step.ingredients.map((ingredient, idx) => {
                               const isWhiskey = ingredient.toLowerCase().includes('whiskey');
-                              const isUsed = usedIngredients.has(ingredient);
+                              const isUsed = isIngredientUsed(ingredient);
                               return (
                                 <li 
                                   key={idx} 
