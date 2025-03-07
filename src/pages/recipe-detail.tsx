@@ -129,9 +129,9 @@ export default function RecipeDetail() {
         <TopBar />
         <div className="container mx-auto px-4 py-8 pt-16 pb-24">
           <div className="animate-pulse">
-            <div className="h-8 w-48 bg-gray-200 rounded mb-4"></div>
-            <div className="h-6 w-full bg-gray-200 rounded mb-6"></div>
-            <div className="h-64 w-full bg-gray-200 rounded mb-6"></div>
+            <div className="h-8 w-48 bg-[hsl(var(--wheat-medium))] rounded mb-4"></div>
+            <div className="h-6 w-full bg-[hsl(var(--wheat-mild))] rounded mb-6"></div>
+            <div className="h-64 w-full bg-[hsl(var(--wheat-soft))] rounded mb-6 border border-[hsl(var(--wheat-medium))]"></div>
           </div>
         </div>
         <BottomNav />
@@ -145,7 +145,7 @@ export default function RecipeDetail() {
         <TopBar />
         <div className="container mx-auto px-4 py-8 pt-16 pb-24 flex flex-col items-center justify-center">
           <h1 className="text-2xl font-bold mb-4">Recipe Not Found</h1>
-          <p className="text-muted-foreground mb-6">The recipe you're looking for doesn't exist or has been removed.</p>
+          <p className="text-wheat-medium mb-6">The recipe you're looking for doesn't exist or has been removed.</p>
           <Button onClick={() => window.location.href = '/'}>
             Back to Recipes
           </Button>
@@ -167,21 +167,21 @@ export default function RecipeDetail() {
             </Avatar>
             <div>
               <div className="font-medium text-sm">{recipe.author.name}</div>
-              <div className="text-xs text-muted-foreground">Posted on {formatDate(recipe.createdAt)}</div>
+              <div className="text-xs text-wheat-medium">Posted on {formatDate(recipe.createdAt)}</div>
             </div>
           </div>
           
           <h1 className="text-3xl font-bold mb-2">{recipe.title}</h1>
-          <p className="text-muted-foreground mb-6">{recipe.description}</p>
+          <p className="text-wheat-medium mb-6">{recipe.description}</p>
 
           <div className="rounded-md overflow-hidden relative mb-6" style={{ height: '350px' }}>
             {!imageLoaded ? (
-              <div className="absolute inset-0 flex items-center justify-center bg-muted h-full w-full">
-                <Skeleton className="absolute inset-0 w-full h-full" />
+              <div className="absolute inset-0 flex items-center justify-center bg-[hsl(var(--wheat-soft))] h-full w-full">
+                <Skeleton className="absolute inset-0 w-full h-full bg-[hsl(var(--wheat-mild))]" />
                 <div className="relative z-10 flex flex-col items-center justify-center gap-2">
-                  <ImageIcon className="h-10 w-10 text-muted-foreground/50 animate-pulse" />
-                  <div className="h-2 w-24 bg-muted-foreground/20 rounded-full animate-pulse" />
-                  <div className="h-2 w-16 bg-muted-foreground/20 rounded-full animate-pulse" />
+                  <ImageIcon className="h-10 w-10 text-[hsl(var(--wheat-text-light))] animate-pulse" />
+                  <div className="h-2 w-24 bg-[hsl(var(--wheat-medium))] rounded-full animate-pulse" />
+                  <div className="h-2 w-16 bg-[hsl(var(--wheat-medium))] rounded-full animate-pulse" />
                 </div>
               </div>
             ) : (
@@ -195,7 +195,7 @@ export default function RecipeDetail() {
 
           <div className="flex flex-wrap gap-2 mb-6">
             {recipe.tags.map((tag) => (
-              <Badge key={tag} variant="secondary">
+              <Badge key={tag} className="wheat-badge">
                 {tag}
               </Badge>
             ))}
@@ -228,13 +228,13 @@ export default function RecipeDetail() {
           <Separator className="my-6" />
 
           <Tabs defaultValue="ingredients">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="ingredients" className="flex items-center">
-                <ScrollText className="h-4 w-4 mr-2" />
+            <TabsList className="wheat-tabs-list grid w-full grid-cols-2">
+              <TabsTrigger value="ingredients" className="wheat-tabs-trigger flex items-center">
+                <ScrollText className="h-4 w-4 mr-2 text-wheat-medium" />
                 Ingredients
               </TabsTrigger>
-              <TabsTrigger value="instructions" className="flex items-center">
-                <Utensils className="h-4 w-4 mr-2" />
+              <TabsTrigger value="instructions" className="wheat-tabs-trigger flex items-center">
+                <Utensils className="h-4 w-4 mr-2 text-wheat-medium" />
                 Instructions
               </TabsTrigger>
             </TabsList>
