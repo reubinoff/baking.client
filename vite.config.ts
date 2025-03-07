@@ -29,7 +29,6 @@ export default defineConfig({
     },
   },
   root: '.',
-  base: '/',
   build: {
     outDir: path.resolve(__dirname, "dist"),
     emptyOutDir: true,
