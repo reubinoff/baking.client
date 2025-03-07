@@ -80,14 +80,25 @@
   
   /* Custom tabs styling */
   .wheat-tabs-list {
-    @apply inline-flex h-10 items-center justify-center rounded-md bg-[hsl(var(--wheat-soft))] p-1 text-[hsl(var(--wheat-text-medium))] border border-[hsl(var(--wheat-medium))];
+    @apply inline-flex h-12 items-center justify-center rounded-t-md bg-transparent p-1 border-0 gap-2;
   }
   
   .wheat-tabs-trigger {
-    @apply inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--wheat-dark))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
-    @apply bg-[hsl(var(--wheat-medium))] text-[hsl(var(--wheat-text-light))];
-    @apply hover:bg-[hsl(var(--wheat-dark))] hover:text-white;
-    @apply data-[state=active]:bg-white data-[state=active]:text-[hsl(var(--wheat-text-dark))] data-[state=active]:shadow-sm;
+    @apply relative inline-flex items-center justify-center whitespace-nowrap rounded-t-md px-4 py-2 text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--wheat-dark))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+    /* Unselected tab styling */
+    @apply bg-[hsl(var(--wheat-soft))] text-[hsl(var(--wheat-text-medium))];
+    @apply hover:bg-[hsl(var(--wheat-medium))] hover:text-[hsl(var(--wheat-text-dark))];
+    /* Selected tab styling - multiple indicators for clarity */
+    @apply data-[state=active]:bg-white data-[state=active]:text-[hsl(var(--wheat-text-dark))] data-[state=active]:font-semibold;
+    @apply data-[state=active]:border data-[state=active]:border-[hsl(var(--wheat-medium))] data-[state=active]:border-b-0;
+    @apply data-[state=active]:shadow-sm data-[state=active]:z-10;
+    /* Bottom border that connects to content */
+    @apply after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-transparent;
+    @apply data-[state=active]:after:bg-white;
+  }
+  
+  .wheat-tabs-content {
+    @apply bg-white border border-[hsl(var(--wheat-medium))] rounded-b-md p-4 shadow-sm;
   }
   
   /* Custom badge styling */

@@ -9,7 +9,7 @@ interface TopBarProps {
 }
 
 export function TopBar({ className }: TopBarProps) {
-  const [location, setLocation] = useLocation();
+  const [_location, setLocation] = useLocation();
   const [isRecipeDetailMatch] = useRoute('/recipe/:id');
 
   const handleBackClick = () => {

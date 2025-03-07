@@ -735,6 +735,6 @@ export const mockRecipes: Recipe[] = [
 ];
 
 // Helper function to convert steps to instructions
-function stepsToInstructions(steps: RecipeStep[]): string[] {
+function _stepsToInstructions(steps: RecipeStep[]): string[] {
   return steps.map(step => step.instruction);
 }

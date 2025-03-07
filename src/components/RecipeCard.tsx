@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Heart, Clock, ChefHat } from 'lucide-react';
+import { Heart, Clock } from 'lucide-react';
 import { Recipe } from '@/lib/mockData';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { useLocation } from 'wouter';
 
 interface RecipeCardProps {

@@ -39,7 +39,7 @@ export default function RecipeDetail() {
   // Preload the image when recipe changes
   useEffect(() => {
     if (recipe && !imageLoaded) {
-      const img = new Image();
+      const img = new window.Image();
       img.src = recipe.imageUrl;
       img.onload = () => setImageLoaded(true);
     }
@@ -238,7 +238,7 @@ export default function RecipeDetail() {
                 Instructions
               </TabsTrigger>
             </TabsList>
-            <TabsContent value="ingredients" className="mt-4">
+            <TabsContent value="ingredients" className="wheat-tabs-content mt-0">
               <ul className="space-y-3">
                 {recipe.ingredients.map((ingredient, index) => {
                   const isUsed = isIngredientUsed(ingredient);
@@ -266,7 +266,7 @@ export default function RecipeDetail() {
                 })}
               </ul>
             </TabsContent>
-            <TabsContent value="instructions" className="mt-4">
+            <TabsContent value="instructions" className="wheat-tabs-content mt-0">
               {recipe.steps ? (
                 <div className="space-y-8">
                   <h2 className="text-2xl font-bold mb-8">Directions</h2>
